@@ -11,3 +11,6 @@ pids
 logs
 results
 build
+
+.idea
+*.iml
