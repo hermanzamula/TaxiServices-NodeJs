@@ -1,0 +1,13 @@
+{
+  "name": "yours-taxi-nodejs",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.4.7",
+    "mongoose": "3.8.*",
+    "lodash-node": "2.4.*"
+  }
+}
