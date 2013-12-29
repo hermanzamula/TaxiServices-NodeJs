@@ -1,4 +1,4 @@
-var DriverLocation = require(global.root("/model/driver-location")).DriverLocation;
+var DriverLocation = require(global.root("model/driver-location")).DriverLocation;
 var _ = require('lodash-node');
 
 var DriverService = {};
