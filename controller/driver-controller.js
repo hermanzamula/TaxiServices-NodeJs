@@ -17,7 +17,9 @@ DriverController.getDrivers = function (req, resp) {
 
     } else {
 
-        DriverService.readNear({longitude: query.longitude, latitude: query.latitude}, query.radius, query.limit || UNLIMITED, function (drivers) {
+        var center = {longitude: query.longitude, latitude: query.latitude};
+
+        DriverService.readNear(center, query.radius, query.limit || UNLIMITED, function (drivers) {
             resp.json(drivers);
         });
 
@@ -30,7 +32,7 @@ DriverController.save = function (req, resp) {
     var body = req.body;
     console.log("Save driver request: " + JSON.stringify(body));
 
-    DriverService.saveLocation(body.driverId, body.location);
+    DriverService.saveLocation(body.driverId, body.location, body.status);
 
     resp.status(200).send();
 

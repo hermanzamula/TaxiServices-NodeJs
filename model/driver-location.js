@@ -9,6 +9,7 @@ var DriverLocation = new Schema({
         type: [Number],
         index: "2d"
     },
+    status: String,
     _id: {
         type: Number
     }

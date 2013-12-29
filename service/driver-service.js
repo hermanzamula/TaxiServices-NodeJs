@@ -4,8 +4,8 @@ var _ = require('lodash-node');
 var DriverService = {};
 
 /**
- * @param center {longitude, latitude}: array<Number>
- * @param radius
+ * @param center {Object}
+ * @param radius {Number}
  * @param limit
  * @param callback
  */
@@ -32,10 +32,13 @@ DriverService.readAll = function(callback) {
 /**
  * @param driverId
  * @param location {longitude, latitude}
+ * @param status {'free', 'on-call'}
  */
-DriverService.saveLocation = function(driverId, location) {
+DriverService.saveLocation = function(driverId, location, status) {
 
-    DriverLocation.findByIdAndUpdate(driverId, {location: toModelLocation(location)}, {upsert: true}, function(err) {
+    var toUpdate = {location: toModelLocation(location), status: status};
+
+    DriverLocation.findByIdAndUpdate(driverId, toUpdate, {upsert: true}, function(err) {
         err && console.log("Error happened when save driver: " + JSON.stringify(err))
     });
 
@@ -53,7 +56,8 @@ function toDriversResponse(drivers) {
                 longitude: driver.location[0],
                 latitude: driver.location[1]
             },
-            driverId: driver._id
+            driverId: driver._id,
+            status: driver.status
         })
     });
 }
