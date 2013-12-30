@@ -18,6 +18,24 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
 
+// ## CORS middleware
+// see: http://stackoverflow.com/questions/7067966/how-to-allow-cors-in-express-nodejs
+var allowCrossDomain = function(req, res, next) {
+
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+        res.send(200);
+    }
+    else {
+        next();
+    }
+};
+app.use(allowCrossDomain);
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());

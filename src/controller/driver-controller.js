@@ -4,7 +4,7 @@ var DriverController = {};
 
 var UNLIMITED = 100000;
 
-DriverController.getDrivers = function (req, resp) {
+DriverController.getDrivers = function (req, res) {
     var query = req.query;
 
     console.log("Processing get drivers request: " + JSON.stringify(query));
@@ -12,7 +12,7 @@ DriverController.getDrivers = function (req, resp) {
     if (!query.longitude || !query.latitude) {
 
         DriverService.readAll(function (drivers) {
-            resp.json(drivers);
+            res.json(drivers);
         });
 
     } else {
@@ -20,7 +20,7 @@ DriverController.getDrivers = function (req, resp) {
         var center = {longitude: query.longitude, latitude: query.latitude};
 
         DriverService.readNear(center, query.radius, query.limit || UNLIMITED, function (drivers) {
-            resp.json(drivers);
+            res.json(drivers);
         });
 
     }
