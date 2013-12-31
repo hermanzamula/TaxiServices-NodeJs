@@ -16,7 +16,6 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-app.use(app.router);
 
 // ## CORS middleware
 // see: http://stackoverflow.com/questions/7067966/how-to-allow-cors-in-express-nodejs
@@ -35,6 +34,7 @@ var allowCrossDomain = function(req, res, next) {
     }
 };
 app.use(allowCrossDomain);
+app.use(app.router);
 
 // development only
 if ('development' == app.get('env')) {
