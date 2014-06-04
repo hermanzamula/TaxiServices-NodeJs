@@ -1,7 +1,12 @@
-var DriverLocation = require(global.root("model/driver-location")).DriverLocation;
 var _ = require('lodash-node');
-
 var DriverService = {};
+var DriverLocation = null;
+
+var models = require(global.root("model/entities"))(function(models){
+
+    DriverLocation = models.driver_location;
+
+});
 
 /**
  * @param center {Object}
@@ -56,10 +61,11 @@ function toDriversResponse(drivers) {
                 longitude: driver.location[0],
                 latitude: driver.location[1]
             },
-            driverId: driver._id,
+            driverId: driver.id,
             status: driver.status
         })
     });
 }
+
 
 exports.DriverService = DriverService;

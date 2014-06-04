@@ -5,6 +5,7 @@ var DriverController = {};
 var UNLIMITED = 100000;
 
 DriverController.getDrivers = function (req, res) {
+
     var query = req.query;
 
     console.log("Processing get drivers request: " + JSON.stringify(query));

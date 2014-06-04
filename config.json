@@ -1,6 +1,6 @@
 {
     "port":3000,
-    "mongoose": {
-        "uri": "mongodb://127.0.0.1:27017/yours_taxi"
+    "mysql": {
+        "uri": "mysql://root:root@127.0.0.1:3306/taxiservice"
     }
 }

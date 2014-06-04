@@ -1,4 +1,4 @@
-var cluster = require('cluster'),
+/*var cluster = require('cluster'),
     osInfo = require('os');
 
 
@@ -9,4 +9,5 @@ if (cluster.isMaster) {
     }
 } else {
     require('./src/server.js');
-}
+}*/
+require('./src/server.js');
